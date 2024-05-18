@@ -1,30 +1,41 @@
-#!bin/bash
+#!/bin/bash
 #EXECUTE THIS SCRIPT IN HOME/{USER} DIRECCTORY#
 
 #install mcelog
 echo "===> fetching from repo..."
 git clone git://git.kernel.org/pub/scm/utils/cpu/mce/mcelog.git
-if [$? -ne 0]
+if [ $? -ne 0 ]
 then
 	echo "fetch failed :( please re-run"
 	exit 1
 	else
 	echo "===> fetched successfully"
 fi
-cd mcelog
 
-echo "===> running make"
+#install make
+echo "===> installing make..."
+sudo apt-get install make
+if [ $? -ne 0 ]
+then
+	echo "===> failed :( please re-run"
+	exit 1
+	else
+	echo "===> installed make successfully"
+fi
+
+echo "===> building and installing mcelog"
+cd mcelog
 make
 sudo make install
 
-if [$? -ne 0]
+if [ $? -ne 0 ]
 then
 	echo "some error occured"
 	exit 1
 else
 	#copy to systemd
 	cp mcelog.service /usr/lib/systemd/system
-	if [$? -e 0]
+	if [ $? -e 0 ]
 	then
 		echo "error copying"
 		exit 1
@@ -32,7 +43,7 @@ else
 	
 	#enable service
 	sudo systemctl enable mcelog.service
-	if [$? -e 0]
+	if [ $? -e 0 ]
 	then
 		echo "successfuly started mcelog service"
 		echo "to verify run `mcelog --client` or `systemctl status mcelog.service`"
