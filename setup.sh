@@ -2,8 +2,18 @@
 #EXECUTE THIS SCRIPT IN HOME/{USER} DIRECCTORY#
 
 #install mcelog
+echo "===> fetching from repo..."
 git clone git://git.kernel.org/pub/scm/utils/cpu/mce/mcelog.git
+if [$? -ne 0]
+then
+	echo "fetch failed :( please re-run"
+	exit 1
+	else
+	echo "===> fetched successfully"
+fi
 cd mcelog
+
+echo "===> running make"
 make
 sudo make install
 
