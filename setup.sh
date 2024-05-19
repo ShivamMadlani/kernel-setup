@@ -39,7 +39,7 @@ then
 	exit 1
 else
 	#copy to systemd
-	cp mcelog/mcelog.service /usr/lib/systemd/system
+	sudo cp mcelog/mcelog.service /usr/lib/systemd/system
 	if [ $? -eq 0 ]
 	then
 		echo -e "${RED}===> error copying"
