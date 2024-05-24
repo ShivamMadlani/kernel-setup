@@ -64,5 +64,5 @@ else
 fi
 
 echo -e "${YELLOW}===> installing required packages from apt"
-sudo apt-get install gcc make bash binutils flex bison pahole util-linux kmod e2fsprogs jfsutils reiserfsprogs xfsprogs squashfs-tools btrfs-progs pcmciautils quota pptpd nfs-common procps grub iptables openssl libcrypto++8 libcrypto++-dev bc cpio tar
+sudo apt-get install gcc make bash binutils flex bison pahole util-linux kmod e2fsprogs jfsutils reiserfsprogs xfsprogs squashfs-tools btrfs-progs pcmciautils quota pptpd nfs-common procps grub iptables openssl libcrypto++8 libcrypto++-dev bc cpio tar libelf-dev
 echo -e "%${GREEN}===> installation successful .bye. "
